@@ -2,9 +2,6 @@
   "manifest_version": 3,
   "name": "Email Scraper",
   "version": "1.0",
-  "background": {
-    "service_worker": ""
-  },
   "action": {
     "default_popup": "popup.html"
   },
