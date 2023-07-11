@@ -6,7 +6,7 @@
       "service_worker": "background.js"
     },
     "action": {
-      "default_popup": "popup.html"
+      "default_popup": "gradeFetcher.html"
     },
     "permissions": ["activeTab", "scripting"]
   }
