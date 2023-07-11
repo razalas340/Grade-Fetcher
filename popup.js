@@ -5,14 +5,14 @@ scrapeEmails.addEventListener("click", async () => {
 
   chrome.scripting.executeScript({
     target: { tabId: tab.id },
-    func: scrapEmailsFromPage,
+    func: displayGrades,
   });
 });
 
-function scrapEmailsFromPage() {
-  const emailRegEx = /[\w.=-]+@[\w.-]+.[\w]{2,3}/gim;
-
-  let emails = document.body.innerHTML.match(emailRegEx);
-
-  alert(emails);
+function displayGrades() {
+  const gradeInputs = document.querySelectorAll(".u7S8tc .ksaOtd");
+  // Create an array to store the grade values
+  const gradeValues = [];
+  //iterate through the values and push them to the gradeValues array
+  gradeInputs.forEach((gradeInput) => gradeValues.push(gradeInput.outerText));
 }
