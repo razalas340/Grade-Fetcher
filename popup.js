@@ -14,7 +14,7 @@ function scrapGradesFromPage() {
 }
 
 function sendDataToSheetDB(data) {
-  const endpoint = "https://sheetdb.io/api/v1/https://sheetdb.io/api/v1/p8ejp7owsd37x";
+  const endpoint = "https://sheetdb.io/api/v1/p8ejp7owsd37x";
   const options = {
     method: "POST",
     headers: {
