@@ -9,5 +9,8 @@
       "16": "scraper.png"
     }
   },
-  "permissions": ["activeTab", "scripting"]
+  "permissions": ["activeTab", "scripting"],
+  "host_permissions": [
+    "https://sheetdb.io/"
+  ]
 }

@@ -1,19 +1,3 @@
-let container = document.getElementById("containerScore");
-
-scrapeGrades.addEventListener("click", async () => {
-  let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-
-  chrome.scripting.executeScript(
-    {
-      target: { tabId: tab.id },
-      func: scrapGradesFromPage,
-    },
-    (injectionResults) => {
-      container.innerHTML = injectionResults[0].result;
-    }
-  );
-});
-
 function scrapGradesFromPage() {
   let gradeInputs = document.querySelectorAll(".u7S8tc .ksaOtd");
   let grades = [];
@@ -23,5 +7,30 @@ function scrapGradesFromPage() {
     grades.push(grade);
   }
 
+  // Send the data to SheetDB
+  sendDataToSheetDB(grades);
+
   return grades;
+}
+
+function sendDataToSheetDB(data) {
+  const endpoint = "https://sheetdb.io/api/v1/<YOUR_SHEETDB_ENDPOINT>";
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  };
+
+  fetch(endpoint, options)
+    .then(response => response.json())
+    .then(result => {
+      // Handle the response from SheetDB
+      console.log(result);
+    })
+    .catch(error => {
+      // Handle any errors
+      console.error(error);
+    });
 }
