@@ -1,12 +1,10 @@
 {
   "manifest_version": 3,
-  "name": "My Extension",
+  "name": "Email Scraper",
   "version": "1.0",
-  "description": "Example Chrome Extension",
-  "permissions": [
-    "activeTab"
-  ],
+
   "action": {
     "default_popup": "popup.html"
-  }
+  },
+  "permissions": ["activeTab", "scripting"]
 }

@@ -1,9 +1,21 @@
-document.addEventListener('DOMContentLoaded', function() {
-  var button = document.getElementById('gradesButton');
+let container = document.getElementById("containerScore");
 
-  button.addEventListener('click', function() {
-    chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-      chrome.tabs.sendMessage(tabs[0].id, { action: 'displayGrades' });
-    });
-  });
+scrapeEmails.addEventListener("click", async () => {
+  let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+
+  chrome.scripting.executeScript(
+    {
+      target: { tabId: tab.id },
+      func: scrapEmailsFromPage,
+    },
+    (injectionResults) => {
+      container.innerHTML = injectionResults[0].result;
+    }
+  );
 });
+
+function scrapEmailsFromPage() {
+  let gradeInputs = document.querySelectorAll(".u7S8tc .ksaOtd");
+  let score = gradeInputs[0].innerHTML;
+  return score;
+}
