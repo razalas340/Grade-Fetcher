@@ -6,7 +6,7 @@ scrapeEmails.addEventListener("click", async () => {
   chrome.scripting.executeScript(
     {
       target: { tabId: tab.id },
-      func: scrapEmailsFromPage,
+      func: scrapGradesFromPage,
     },
     (injectionResults) => {
       container.innerHTML = injectionResults[0].result;
@@ -14,7 +14,7 @@ scrapeEmails.addEventListener("click", async () => {
   );
 });
 
-function scrapEmailsFromPage() {
+function scrapGradesFromPage() {
   let gradeInputs = document.querySelectorAll(".u7S8tc .ksaOtd");
   let score = gradeInputs[0].innerHTML;
   return score;
