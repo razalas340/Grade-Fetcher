@@ -1,7 +1,7 @@
 let container = document.getElementById("containerScore");
-let scrapeEmails = document.getElementById("scrapeEmails");
+let scrapeGrades = document.getElementById("scrapeGrades");
 
-scrapeEmails.addEventListener("click", async () => {
+scrapeGrades.addEventListener("click", async () => {
   let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
   chrome.scripting.executeScript(
