@@ -10,7 +10,7 @@ function scrapGradesFromPage() {
   // Send the data to SheetDB
   sendDataToSheetDB(grades);
 
-  return grades;
+  console.log(grades);
 }
 
 function sendDataToSheetDB(data) {
