@@ -7,7 +7,5 @@ function scrapGradesFromPage() {
     grades.push(grade);
   }
 
-  
-
-  return grades;
+   return grades;
 }
