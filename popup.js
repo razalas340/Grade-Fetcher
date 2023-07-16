@@ -46,5 +46,3 @@ function sendDataToSheetDB(data) {
     .then((response) => response.json())
     .then((data) => console.log(data));
 }
-
-//yoyoyoyo
