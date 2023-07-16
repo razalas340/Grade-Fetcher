@@ -37,8 +37,8 @@ function sendDataToSheetDB(data) {
     body: JSON.stringify({
       data: [
         {
-          Grade: data,
-          StudentName: "Mark",
+          Grade: data[1],
+          StudentName: data[0] ,
         },
       ],
     }),
