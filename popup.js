@@ -626,7 +626,7 @@ function scrapeGradesFromPage() {
 
 // update the props to include class names
 function sendDataToSheetDB(score, name, assignmentname) {
-  fetch("https://sheetdb.io/api/v1/2tdy9xhxss4ss", {
+  fetch("https://sheetdb.io/api/v1/p8ejp7owsd37x", {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -643,6 +643,20 @@ function sendDataToSheetDB(score, name, assignmentname) {
       ],
     }),
   })
-    .then((response) => response.json())
-    .then((data) => console.log(data));
+    .then((response) => {
+      if (!response.ok) {
+        return response.json().then((err) => {
+          throw new Error(
+            `Error Code: ${response.status}. Message: ${err.error}`
+          );
+        });
+      }
+      return response.json();
+    })
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((error) => {
+      console.error("Error sending data to SheetDB:", error);
+    });
 }
