@@ -35,9 +35,9 @@
 //   let studentName = document.querySelectorAll(".qp1Eye .B7SYid");
 //   // console.log(`gradeInputs`, gradeInputs);
 //   // let name = studentName[0].innerHTML;
-//   // let score = gradeInputs[0].innerHTML; 
+//   // let score = gradeInputs[0].innerHTML;
 //   // return [gradeInputs[0], studentName[0]];
-  
+
 //   let grades = [];
 //   let names = [];
 //   for (let i = 0; i < gradeInputs.length; i++) {
@@ -46,7 +46,7 @@
 //   }
 
 //   return [grades, names]
- 
+
 // }
 
 // // function sendDataToSheetDB(data) {
@@ -91,7 +91,6 @@
 //     .then((data) => console.log(data));
 //   }
 // }
-
 
 // // scrapeGrades.addEventListener("click", async () => {
 // //   let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
@@ -240,7 +239,6 @@
 // }
 
 //END OF OG/////
-
 
 // let container = document.getElementById("containerScore");
 // let scrapeGrades = document.getElementById("scrapeGrades");
@@ -395,7 +393,7 @@
 
 //   for (let i = 0; i < assignmentS.length; i++) {
 //     let assignment = assignmentS[i].innerHTML;
-    
+
 //     if (!uniqueAssignments.includes(assignment)) {
 //       uniqueAssignments.push(assignment);
 //       assignments.push(assignment);
@@ -428,7 +426,6 @@
 //   }
 // }
 
-
 //this new version debugs to see what is being sent to DB API
 
 // let container = document.getElementById("containerScore");
@@ -450,12 +447,12 @@
 //       for(let i = 0; i < scores.length;i++) {
 //         sendDataToSheetDB(scores[i],names[0],lessons[i]);
 //       }
-      
+
 //     }
-    // (injectionResults) => {
-    //   container.innerHTML = injectionResults[0].result;
-    //   sendDataToSheetDB(injectionResults[0].result);
-    // }
+// (injectionResults) => {
+//   container.innerHTML = injectionResults[0].result;
+//   sendDataToSheetDB(injectionResults[0].result);
+// }
 //   );
 // });
 
@@ -476,7 +473,7 @@
 
 //   for (let i = 0; i < assignmentS.length; i++) {
 //     let assignment = assignmentS[i].innerHTML;
-    
+
 //     if (!uniqueAssignments.includes(assignment)) {
 //       uniqueAssignments.push(assignment);
 //       assignments.push(assignment);
@@ -516,8 +513,8 @@
 //       .catch((error) => {
 //         console.error(error); // Log any errors
 //       });
-  // }
-  
+// }
+
 // function sendDataToSheetDB([grades, firstName, assignments]) {
 //   console.log(`grades`, grades);
 //   for (let i = 0; i < grades.length; i++) {
@@ -563,7 +560,7 @@ scrapeGrades.addEventListener("click", async () => {
   chrome.scripting.executeScript(
     {
       target: { tabId: tab.id },
-      func: scrapEmailsFromPage,
+      func: scrapeGradesFromPage,
     },
     (injectionResults) => {
       //This is all the data returned from the scrapEmailsFromPage function
@@ -571,9 +568,9 @@ scrapeGrades.addEventListener("click", async () => {
       const gradesArray = injectionResults[0].result[0];
       const classNamesArray = injectionResults[0].result[2];
 
-      container.innerHTML = studentName
-      container.innerHTML += gradesArray
-      container.innerHTML += classNamesArray
+      container.innerHTML = studentName;
+      container.innerHTML += gradesArray;
+      container.innerHTML += classNamesArray;
 
       // let resultValue = injectionResults[0].result;
 
@@ -586,15 +583,17 @@ scrapeGrades.addEventListener("click", async () => {
       // don't use the index for the student name since it's just a single string
       for (let i = 0; i < scores.length; i++) {
         // make sure to add class names here
-        sendDataToSheetDB(scores[i], names[i]);
+        sendDataToSheetDB(gradesArray[i], scores[i], names[i]);
       }
     }
   );
 });
 
-function scrapEmailsFromPage() {
+function scrapeGradesFromPage() {
   const gradeInputs = document.querySelectorAll("span.ksaOtd");
-  const allClasses = document.querySelectorAll('span.YVvGBb:not(.A6dC2c):not(.dDKhVc):not(.u7S8tc):not(.udxSmc)')
+  const allClasses = document.querySelectorAll(
+    "span.YVvGBb:not(.A6dC2c):not(.dDKhVc):not(.u7S8tc):not(.udxSmc)"
+  );
   const studentName = document.querySelectorAll(".qp1Eye .B7SYid");
 
   let gradeArray = [];
@@ -607,9 +606,9 @@ function scrapEmailsFromPage() {
   // parse through array and only grab every other element since every element is duplicated
   allClasses.forEach(function (className, index) {
     if (index % 2 === 1) {
-      classArray.push(className.textContent)
+      classArray.push(className.textContent);
     }
-  })
+  });
 
   return [gradeArray, studentName[0].textContent, classArray];
 }
