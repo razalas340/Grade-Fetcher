@@ -563,14 +563,25 @@ scrapeGrades.addEventListener("click", async () => {
       func: scrapeGradesFromPage,
     },
     (injectionResults) => {
+      if (
+        !injectionResults ||
+        !injectionResults[0] ||
+        !injectionResults[0].result ||
+        injectionResults[0].result.length < 3
+      ) {
+        console.error(
+          "Unexpected result format or no data returned from script"
+        );
+        return;
+      }
       //This is all the data returned from the scrapEmailsFromPage function
       const studentName = injectionResults[0].result[1];
       const gradesArray = injectionResults[0].result[0];
       const classNamesArray = injectionResults[0].result[2];
 
-      container.innerHTML = studentName;
-      container.innerHTML += gradesArray;
-      container.innerHTML += classNamesArray;
+      container.innerHTML = `Student Name: ${studentName}`;
+      container.innerHTML += `<br>Grades: ${gradesArray.join(", ")}`;
+      container.innerHTML += `<br>Class Names: ${classNamesArray.join(", ")}`;
 
       // let resultValue = injectionResults[0].result;
 
