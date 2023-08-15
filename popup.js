@@ -594,7 +594,7 @@ scrapeGrades.addEventListener("click", async () => {
       // don't use the index for the student name since it's just a single string
       for (let i = 0; i < gradesArray.length; i++) {
         // make sure to add class names here
-        sendDataToSheetDB(gradesArray[i], scores[i], names[i]);
+        sendDataToSheetDB(studentName[i], gradesArray[i], classNamesArray[i]);
       }
     }
   );
