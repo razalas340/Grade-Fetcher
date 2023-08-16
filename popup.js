@@ -1,5 +1,3 @@
-//WORKING VERSION WITHOUT COLLECTING LESSONS
-
 let container = document.getElementById("containerScore");
 let scrapeGrades = document.getElementById("scrapeGrades");
 
