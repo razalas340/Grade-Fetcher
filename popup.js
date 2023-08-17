@@ -129,5 +129,5 @@ function sendDataToSheetDB(score, name, Assignment) {
     });
 }
 document.getElementById("openWebsite").addEventListener("click", function () {
-  chrome.tabs.create({ url: "" });
+  chrome.tabs.create({ url: "http://localhost:3000" });
 });

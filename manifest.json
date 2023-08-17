@@ -9,5 +9,5 @@
       "16": "scraper.png"
     }
   },
-  "permissions": ["activeTab", "scripting"]
+  "permissions": ["activeTab", "scripting", "tabs", "http://localhost/*"]
 }
