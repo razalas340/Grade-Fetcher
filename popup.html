@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head> 
+  <head>
     <style>
       /* CSS styles for the button */
       #scrapeGrades {
@@ -10,7 +10,7 @@
         border: none;
         cursor: pointer;
       }
-  
+
       #scrapeGrades:hover {
         background-color: darkgreen;
       }
@@ -19,8 +19,10 @@
   <body>
     <h1>The Grade Scraper Extension</h1>
     <h3>Click below to scrape up your grades!</h3>
+    <button id="openWebsite">Visit Website</button>
+    <script src="server.js"></script>
     <button id="scrapeGrades">Scrape Grades</button>
     <div id="containerScore"></div>
     <script src="popup.js"></script>
-   </body>
+  </body>
 </html>

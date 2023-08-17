@@ -82,13 +82,13 @@ function scrapeGradesFromPage() {
 }
 
 // update the props to include class names
-function sendDataToSheetDB(score, name, assignmentname) {
+function sendDataToSheetDB(score, name, Assignment) {
   const payload = {
     data: [
       {
         score: score,
         name: name,
-        assignmentname: assignmentname,
+        Assignment: Assignment,
       },
     ],
   };
@@ -104,9 +104,9 @@ function sendDataToSheetDB(score, name, assignmentname) {
       // update the data structure to include class names
       data: [
         {
-          score: score,
-          name: name,
-          assignmentname: assignmentname,
+          Grade: score,
+          StudentName: name,
+          Assignment: Assignment,
         },
       ],
     }),
@@ -128,3 +128,6 @@ function sendDataToSheetDB(score, name, assignmentname) {
       console.error("Error sending data to SheetDB:", error);
     });
 }
+document.getElementById("openWebsite").addEventListener("click", function () {
+  chrome.tabs.create({ url: "" });
+});
