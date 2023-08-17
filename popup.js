@@ -117,7 +117,7 @@ function sendDataToSheetDB(score, name, Assignment) {
       console.error("Error sending data to SheetDB:", error);
     });
 }
-document.getElementById("scrapeGrades").addEventListener("click", function () {
+document.getElementById("openWebsite").addEventListener("click", function () {
   chrome.tabs.create({ url: "http://localhost:3000" });
   let data = { grade: "A+" };
 
