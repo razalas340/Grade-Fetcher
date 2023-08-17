@@ -548,3 +548,17 @@
 //       });
 //   }
 // }
+
+
+This is part of the current working popup.js injection control. previous and failed attempts:
+   // if (
+      //   !injectionResults ||
+      //   !injectionResults[0] ||
+      //   !injectionResults[0].result ||
+      //   injectionResults[0].result.length < 3
+      // ) {
+      //   console.error(
+      //     "Unexpected result format or no data returned from script"
+      //   );
+      //   return;
+      // }

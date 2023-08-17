@@ -10,17 +10,6 @@ scrapeGrades.addEventListener("click", async () => {
       func: scrapeGradesFromPage,
     },
     (injectionResults) => {
-      // if (
-      //   !injectionResults ||
-      //   !injectionResults[0] ||
-      //   !injectionResults[0].result ||
-      //   injectionResults[0].result.length < 3
-      // ) {
-      //   console.error(
-      //     "Unexpected result format or no data returned from script"
-      //   );
-      //   return;
-      // }
       //This is all the data returned from the scrapEmailsFromPage function
       const studentName = injectionResults[0].result[1];
       const gradesArray = injectionResults[0].result[0];
@@ -128,6 +117,12 @@ function sendDataToSheetDB(score, name, Assignment) {
       console.error("Error sending data to SheetDB:", error);
     });
 }
-document.getElementById("openWebsite").addEventListener("click", function () {
+document.getElementById("scrapeGrades").addEventListener("click", function () {
   chrome.tabs.create({ url: "http://localhost:3000" });
+  let data = { grade: "A+" };
+
+  // Send the data to the content script of the current tab
+  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+    chrome.tabs.sendMessage(tabs[0].id, data);
+  });
 });
